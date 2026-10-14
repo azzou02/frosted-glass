@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+/* The frosted layer is blurred and clipped by a canvas-generated mask.
+   Where the mask is opaque -> frost shows. Where transparent -> sharp bg shows. */
+#bg-frost {
+  filter: blur(14px) brightness(1.05) saturate(1.1);
+  transform: scale(1.08); /* hide blur bleed at edges */
+}
+
+#frost-layer {
+  /* mask-image is set from JS as a data/stream URL of the mask canvas.
+     Fallback: fully visible frost until JS wires it up. */
+  will-change: mask-image, -webkit-mask-image;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #rain {
+    display: none;
+  }
+}
